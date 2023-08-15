@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Item;
+use App\Models\Category;
+
 
 class Itemcontroller extends Controller
 {
@@ -11,7 +14,11 @@ class Itemcontroller extends Controller
      */
     public function index()
     {
-        return view('items.index');
+
+        $categories = Category::all();
+        $items = Item::all();
+        // dd($items);
+        return view('items.index' , compact('items','categories'));
     }
 
     /**
@@ -35,7 +42,22 @@ class Itemcontroller extends Controller
      */
     public function show(string $id)
     {
-        return view('items.detail');
+        
+        $item = Item::find($id);
+        $item_categoryID = $item->categoryID;
+        $item_categories = Item::where('categoryID',$item_categoryID)
+        ->orderBy('id','DESC')->limit(3)->get();
+        return view('items.detail',compact('item','item_categories'));
+    }
+
+    // Filter items with categories id
+
+    public function itemCategory(string $category_id){
+
+        $itemCategories = Item::where('categoryID',$category_id)
+        ->get();
+
+        return view('items.item_category',compact('itemCategories'));
     }
 
     /**
