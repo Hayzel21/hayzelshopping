@@ -19,19 +19,19 @@ var_dump($items);
 
          <!-- Categories Section -->
 
-         <!-- <section class="py-5">
+         <section class="py-5">
             <div class="container px-4 px-lg-5 mt-5">
                 <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
 
                     @foreach($categories as $category)
-                    <a class="col mb-5" href="">
+                    <a class="col mb-5" href="{{route('item_category',$category->id)}}">
                     <div class="card text-bg-dark">
                         <img src="{{$category->photo}}" class="card-img" alt="...">
                         <div class="card-img-overlay">
                             <h5 class="card-title">{{$category->name}}</h5>
-                            <!-- <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                            <p class="card-text"><small>Last updated 3 mins ago</small></p> -->
-                        <!-- </div>
+                            <!-- <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p> -->
+                            <!-- <p class="card-text"><small>Last updated 3 mins ago</small></p> --> 
+                        </div>
                     </div>
                     </a>
                     @endforeach
@@ -39,7 +39,7 @@ var_dump($items);
                 </div>
 
             </div>
-        </section> --> -->
+        </section>
 
 
         <!-- Section-->

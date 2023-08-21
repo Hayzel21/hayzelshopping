@@ -20,6 +20,11 @@ class Item extends Model
         'description',
         'discount',
         'instock',
-        'categoryID'
+        'category_id'
     ];
+
+    public function category(){
+
+        return $this->belongsTO(Category::class);
+    }
 }

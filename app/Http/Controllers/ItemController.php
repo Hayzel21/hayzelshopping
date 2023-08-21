@@ -9,6 +9,9 @@ use App\Models\Category;
 
 class Itemcontroller extends Controller
 {
+
+
+    
     /**
      * Display a listing of the resource.
      */
@@ -44,8 +47,8 @@ class Itemcontroller extends Controller
     {
         
         $item = Item::find($id);
-        $item_categoryID = $item->categoryID;
-        $item_categories = Item::where('categoryID',$item_categoryID)
+        $item_categoryID = $item->category_id;
+        $item_categories = Item::where('category_id',$item_categoryID)
         ->orderBy('id','DESC')->limit(3)->get();
         return view('items.detail',compact('item','item_categories'));
     }
@@ -54,10 +57,18 @@ class Itemcontroller extends Controller
 
     public function itemCategory(string $category_id){
 
-        $itemCategories = Item::where('categoryID',$category_id)
+        $itemCategories = Item::where('category_id',$category_id)
         ->get();
 
         return view('items.item_category',compact('itemCategories'));
+    }
+
+    public function itemCart(){
+
+     
+
+        return view('items.item_carts');
+        
     }
 
     /**

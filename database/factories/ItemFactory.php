@@ -24,7 +24,7 @@ class ItemFactory extends Factory
             'description' =>$this->faker->paragraph,
             'discount' =>rand(0,100),
             'instock' =>rand(0,1),
-            'categoryID' =>rand(1,10),
+            'category_id' =>rand(1,10),
         ];
     }
 }
