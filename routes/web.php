@@ -35,6 +35,7 @@ Route::group(['prefix'=>'backend'],function(){
     Route::resource('items',App\Http\Controllers\Admin\ItemController::class);
     Route::resource('categories',App\Http\Controllers\Admin\CategoryController::class);
     Route::resource('payments',App\Http\Controllers\Admin\PaymentController::class);
+    Route::resource('users',App\Http\Controllers\Admin\UserController::class);
 
 });
 

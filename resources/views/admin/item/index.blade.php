@@ -38,7 +38,7 @@
                                                     <td>{{$item->codeNo}}</td>
                                                     <td>{{$item->name}}</td>
                                                     <td>{{$item->price}}</td>
-                                                    <td>{{$item->dixcount}}</td>
+                                                    <td>{{$item->discount}}</td>
                                                     <td>{{$item->inStock}}</td>
                                                     <td></td>
                                                 </tr>
