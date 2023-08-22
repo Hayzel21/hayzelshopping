@@ -27,5 +27,16 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+// admin
+
+Route::group(['prefix'=>'backend'],function(){
+
+    Route::get('/',[App\Http\Controllers\Admin\DashboardController::class,'index'])->name('dashboard');
+    Route::resource('items',App\Http\Controllers\Admin\ItemController::class);
+    Route::resource('categories',App\Http\Controllers\Admin\CategoryController::class);
+    Route::resource('payments',App\Http\Controllers\Admin\PaymentController::class);
+
+});
+
 
 
