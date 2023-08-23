@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Item;
+use App\Models\Category;
 
 class ItemController extends Controller
 {
@@ -22,7 +23,8 @@ class ItemController extends Controller
      */
     public function create()
     {
-        //
+        $categories = Category::all();
+        return view('admin.item.create',compact('categories'));
     }
 
     /**
@@ -30,7 +32,37 @@ class ItemController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // dd($request);
+        $items = Item::create($request->all());
+
+        $fileName = time().'.'.$request->image->extension();
+
+        // image upload
+        $upload = $request->image->move(public_path('image/'));
+        $fileName;
+        if($upload){
+            $items->image = "/image/". $fileName;
+        }
+        $items->save();
+        return redirect()->route('items.index');
+
+        //  // dd($request);
+        // // $items = Item::create($request->all());0.
+
+       
+        // $data = [
+        //     'name' => $request->input('name'),
+        //     'codeNo' => $request->input('codeNo'),
+        //     'price' => $request->input('price'),
+        //     'image' =>$request->input('image'),
+        //     'inStock' => $request->input('inStock'), // Make sure this line is included
+        //     'description' =>$request->input('description'),
+        //     'discount' =>$request->input('discount')
+        // ];
+        
+        // // Insert the data into the database
+        // $items = Item::create($data);
+        // $items->save(); // Assuming your model is named 'Item'
     }
 
     /**
