@@ -2,8 +2,15 @@
 @section ('content')
 
 <main>
-<div class="container-fluid px-4">
-                            <h1 class="my-4">Payments</h1>
+
+
+                        
+                    <div class="container-fluid px-4">
+                        <div class="my-5">
+                        <h1 class="my-4 d-inline text-danger">Payments</h1>
+                        <a href="{{route('payments.create')}}" class="btn btn-primary float-end">Add Payment</a>
+                        </div>
+                
                             <div class="card mb-4">
                                 <div class="card-header">
                                     <i class="fas fa-table me-1"></i>
@@ -13,7 +20,7 @@
                                     <table id="" class="table table-bordered">
                                         <thead>
                                             <tr class="text-center">
-                                                <th>ID</th>
+                                                <!-- <th>ID</th> -->
                                                 <th>Name</th>
                                                 <th>Logo</th>
                                                 <th>Action</th>
@@ -21,7 +28,7 @@
                                         </thead>
                                         <tfoot>
                                             <tr class="text-center">
-                                                <th>ID</th>
+                                                <!-- <th>ID</th> -->
                                                 <th>Name</th>
                                                 <th>Logo</th>
                                                 <th>Action</th>
@@ -31,7 +38,7 @@
                                             @foreach($payments as $payment)
 
                                                 <tr>
-                                                    <td>{{$payment->id}}</td>
+                                                    <!-- <td>{{$payment->id}}</td> -->
                                                     <td>{{$payment->name}}</td>
                                                     <td class="text-center"><img src="{{$payment->logo}}" alt="" class="w-25 h-25"></td> 
                                                     <td></td>  

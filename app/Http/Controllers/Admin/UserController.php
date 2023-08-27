@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Http\Requests\UserRequest;
 
 class UserController extends Controller
 {
@@ -22,15 +23,18 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.user.create');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(UserRequest $request)
     {
-        //
+        // dd($request);
+        $users =User::create($request->all());
+        $users->save();
+        return redirect()->route('users.index');
     }
 
     /**
@@ -38,7 +42,7 @@ class UserController extends Controller
      */
     public function show(string $id)
     {
-        //
+        // 
     }
 
     /**

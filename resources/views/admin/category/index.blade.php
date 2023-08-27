@@ -3,7 +3,11 @@
 
 <main>
 <div class="container-fluid px-4">
-                            <h1 class="my-4">Categories</h1>
+
+                <div class="my-5">
+                        <h1 class="my-4 d-inline text-danger">Categories</h1>
+                        <a href="{{route('categories.create')}}" class="btn btn-primary float-end">Add Category</a>
+                </div>
                             <div class="card mb-4">
                                 <div class="card-header">
                                     <i class="fas fa-table me-1"></i>
@@ -13,7 +17,7 @@
                                     <table id="" class="table table-bordered">
                                         <thead>
                                             <tr class="text-center">
-                                                <th>ID</th>
+                                               
                                                 <th>Name</th>
                                                 <th>Photo</th>
                                                 <th>Action</th>
@@ -21,7 +25,7 @@
                                         </thead>
                                         <tfoot>
                                             <tr class="text-center">
-                                                <th>ID</th>
+                                              
                                                 <th>Name</th>
                                                 <th>Photo</th>
                                                 <th>Action</th>
@@ -31,7 +35,7 @@
                                             @foreach($categories as $category)
 
                                                 <tr>
-                                                    <td>{{$category->id}}</td>
+                                                   
                                                     <td>{{$category->name}}</td>
                                                     <td class="text-center"><img src="{{$category->photo}}" alt="" class="w-25 h-25 "></td>   
                                                     <td></td>

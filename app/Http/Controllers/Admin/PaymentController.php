@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Payment;
+use App\Http\Requests\PaymentRequest;
 
 class PaymentController extends Controller
 {
@@ -22,15 +23,27 @@ class PaymentController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.payment.create');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(PaymentRequest $request)
     {
-        //
+        // dd($request);
+        $payments = Payment::create($request->all());
+
+        $fileName = time().'.'.$request->logo->extension();
+
+        $upload = $request->logo->move(public_path('image/'));
+        $fileName;
+        if($upload){
+            $payments->logo = "/image/". $fileName;
+        }
+        $payments->save();
+        return redirect()->route('payments.index');
+        $payments->save();
     }
 
     /**

@@ -4,7 +4,7 @@
 <main>
 <div class="container-fluid px-4">
                 <div class="my-5">
-                        <h1 class="my-4 d-inline">Dashboard</h1>
+                        <h1 class="my-4 d-inline text-danger">Items</h1>
                         <a href="{{route('items.create')}}" class="btn btn-primary float-end">Add Item</a>
                 </div>
                             <div class="card mb-4">
