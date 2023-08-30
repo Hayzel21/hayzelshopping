@@ -50,22 +50,22 @@
                             <div class="sb-sidenav-menu-heading">Interface</div>
                            
                             
-                            <a class="nav-link" href="{{route('items.index')}}">
+                            <a class="nav-link" href="{{route('backend.items.index')}}">
                                 <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
                                 Items
                             </a>
 
-                            <a class="nav-link" href="{{route('categories.index')}}">
+                            <a class="nav-link" href="{{route('backend.categories.index')}}">
                                 <div class="sb-nav-link-icon"><i class="fa-solid fa-list"></i></div>
                                 Categories
                             </a>
 
-                            <a class="nav-link" href="{{route('payments.index')}}">
+                            <a class="nav-link" href="{{route('backend.payments.index')}}">
                                 <div class="sb-nav-link-icon"><i class="fa-solid fa-cash-register"></i></div>
                                 Payments
                             </a>
 
-                            <a class="nav-link" href="{{route('users.index')}}">
+                            <a class="nav-link" href="{{route('backend.users.index')}}">
                                 <div class="sb-nav-link-icon"><i class="fa-solid fa-user"></i></div>
                                 Users
                             </a>
@@ -100,6 +100,7 @@
                 </footer>
             </div>
         </div>
+        <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="{{asset('admin/js/scripts.js')}}"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
@@ -107,5 +108,7 @@
         <script src="{{asset('admin/assets/demo/chart-bar-demo.js')}}"></script>
         <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
         <script src="{{asset('admin/js/datatables-simple-demo.js')}}"></script>
+
+        @yield('script')
     </body>
 </html>

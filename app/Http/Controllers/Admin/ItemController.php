@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Item;
 use App\Models\Category;
 use App\Http\Requests\ItemRequest;
+use App\Http\Requests\ItemUpdateRequest;
 
 class ItemController extends Controller
 {
@@ -46,7 +47,7 @@ class ItemController extends Controller
             $items->image = "/image/". $fileName;
         }
         $items->save();
-        return redirect()->route('items.index');
+        return redirect()->route('backend.items.index');
 
         //  // dd($request);
         // // $items = Item::create($request->all());0.
@@ -80,15 +81,36 @@ class ItemController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $item = Item::find($id);
+        $categories =Category::all();
+        return view('admin.item.edit',compact('item','categories'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(ItemUpdateRequest $request, string $id)
     {
-        //
+        
+        // dd ($request);
+        $item = Item::find($id);
+        $item->update($request->all());
+
+        if($request->hasFile('newImage')){
+            $fileName = time(). '.' . $request->newImage->extension();
+            $upload = $request->newImage->move(public_path('images/'),$fileName);
+
+            if($upload){
+
+                $item->image = "/images/". $fileName;
+            }
+        }else{
+            $item->image = $request->oldImage;
+
+        }
+
+        $item->save();
+        return redirect()->route('backend.items.index');
     }
 
     /**
@@ -96,6 +118,8 @@ class ItemController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $item =Item::find($id);
+        $item->delete();
+        return redirect()->route('backend.items.index');
     }
 }

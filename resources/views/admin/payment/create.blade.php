@@ -8,7 +8,7 @@
                 <div class="row">
                     <div class="col col-10">Payment Create</div>
                     <div class="col col-2" >
-                        <button class="btn btn-danger ">Cancel</button>
+                        <a href="{{route('backend.payments.index')}}"><button class="btn btn-danger ">Cancel</button></a>
                     </div>
                 </div>
             </div>
@@ -16,7 +16,7 @@
 
             <div class="card-body">
 
-            <form action="{{route('payments.store')}}" method="POST" enctype= multipart/form-data>
+            <form action="{{route('backend.payments.store')}}" method="POST" enctype= multipart/form-data>
                 {{csrf_field()}}
 
                    <label for="name" class="form-label">Name</label>

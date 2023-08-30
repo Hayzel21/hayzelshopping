@@ -5,7 +5,7 @@
     <div class="container-fluid px-4">
     <div class="my-5">
                         <h1 class="my-4 d-inline text-danger">Users</h1>
-                        <a href="{{route('users.create')}}" class="btn btn-primary float-end">Add user</a>
+                        <a href="{{route('backend.users.create')}}" class="btn btn-primary float-end">Add user</a>
     </div>
                             <div class="card mb-4">
                                 <div class="card-header">

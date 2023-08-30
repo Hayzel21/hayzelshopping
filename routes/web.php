@@ -29,7 +29,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 // admin
 
-Route::group(['prefix'=>'backend'],function(){
+Route::group(['prefix'=>'backend','as' => 'backend.'],function(){
 
     Route::get('/',[App\Http\Controllers\Admin\DashboardController::class,'index'])->name('dashboard');
     Route::resource('items',App\Http\Controllers\Admin\ItemController::class);
