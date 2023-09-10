@@ -42,6 +42,35 @@
 
                    @endif
 
+                   <label for="role" class="form-label my-3">Role</label>
+                   <select name="role"  class="form-select {{$errors->has('role') ? 'is-invalid' : ''}}">
+                    <option value="Super Admin">Super Admin</option>
+                    <option value="Admin">Admin</option>
+                    <option value="User">User</option>
+                    </select>
+
+                    <label for="Phone Number" class="form-label my-3">Phone Number</label>
+                   <input type="number" name="Phone Number" id="Phone Number" class="form-control {{$errors->has('Phone number') ? 'is-invalid' : ''}}">
+
+                   @if($errors->has('Phone Number'))
+                   <div class="invalid-feedback">
+                    {{$errors->first('Phone Number')}}
+                   </div>
+
+                   @endif
+
+                   
+                   <label for="address" class="form-label my-3">Address</label>
+                   <input type="text" name="address" id="address" class="form-control {{$errors->has('address') ? 'is-invalid' : ''}}">
+
+                   @if($errors->has('email'))
+                   <div class="invalid-feedback">
+                    {{$errors->first('email')}}
+                   </div>
+
+                   @endif
+                   
+
                    <label for="password" class="form-label my-3">Password</label>
                    <input type="password" name="password" id="password" class="form-control {{$errors->has('password') ? 'is-invalid' : ''}}">
 
@@ -52,15 +81,17 @@
 
                    @endif
 
-                   <label for="role" class="form-label my-3">Role</label>
-                   <input type="number" name="role" id="role" class="form-control {{$errors->has('role') ? 'is-invalid' : ''}}">
+                   <label for="password_confirmation" class="form-label my-3">Confirm Password</label>
+                   <input type="password" name="password_confirmation" id="password_confirmation" class="form-control {{$errors->has('password_confirmation') ? 'is-invalid' : ''}}">
 
-                   @if($errors->has('role'))
+                   @if($errors->has('password_confirmation'))
                    <div class="invalid-feedback">
-                    {{$errors->first('role')}}
+                    {{$errors->first('password_confirmation')}}
                    </div>
 
                    @endif
+
+                   
 
                   
 

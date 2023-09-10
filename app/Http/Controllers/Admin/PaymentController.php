@@ -6,9 +6,22 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Payment;
 use App\Http\Requests\PaymentRequest;
+use App\Http\Requests\PaymentUpdateRequest;
+// use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Auth;
 
 class PaymentController extends Controller
 {
+    public function __construct(){
+        $this->middleware(function($request, $next){
+            
+            if(in_array(Auth::user()->role, ['Super Admin','Admin'])){
+                return $next($request);
+            }else{
+                return back();
+            }
+        });
+    }
     /**
      * Display a listing of the resource.
      */
@@ -42,7 +55,7 @@ class PaymentController extends Controller
             $payments->logo = "/image/". $fileName;
         }
         $payments->save();
-        return redirect()->route('payments.index');
+        return redirect()->route('backend.payments.index');
         $payments->save();
     }
 
@@ -59,15 +72,36 @@ class PaymentController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $payment = Payment::find($id);
+        return view('admin.payment.edit',compact('payment'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(PaymentUpdateRequest $request, string $id)
     {
-        //
+        // dd($request);
+        $payment = Payment::find($id);
+        $payment->update($request->all());
+        
+        if($request->hasFile('newLogo')){
+
+            $fileName = time(). '.' . $request->newLogo->extension();
+            $upload = $request->newLogo->move(public_path('images/'),$fileName);
+
+            if($upload){
+
+                $payment->logo = "/images/". $fileName;
+            }
+        }else{
+            $payment->logo = $request->oldLogo;
+
+        }
+
+        $payment->save();
+        return redirect()->route('backend.payments.index');
+        
     }
 
     /**
@@ -75,6 +109,11 @@ class PaymentController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        // dd($id);
+        $payment = Payment::find($id);
+        $payment->delete();
+        return redirect()->route('backend.payments.index');
+
+ 
     }
 }

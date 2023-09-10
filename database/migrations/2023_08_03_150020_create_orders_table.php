@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('vocherNo');
             $table->string('qty');
             $table->string('total');
+            $table->string('status');
             $table->string('paymentSlip');
 
             $table->unsignedBigInteger('payment_id');

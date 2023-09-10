@@ -23,20 +23,22 @@ class UserRequest extends FormRequest
     {
         return [
             'name' =>'required',
-            'email' =>'required',
-            'password' =>'required',
-            'role' =>'required'
+            'email' =>'required|unique:users',
+            'role' =>'required',
+            'password' =>'min:8|confirmed',
+            'password_confirmation' =>'required|same:password',
+            
         ];
     }
 
-    public function messages(){
+    // public function messages(){
 
-        return [
+    //     return [
 
-            'name.required' => 'Name ဖြည့်ရန်လိုအပ်ပါသည်...',
-            'email.required' => 'Email ဖြည့်ရန်လိုအပ်ပါသည်...',
-            'password' => 'Password ဖြည့်ရန်လိုအပ်ပါသည်...',
-            'role' => 'Role Number ဖြည့်ရန်လိုအပ်ပါသည်...'
-        ] ;
-    }
+    //         'name.required' => 'Name ဖြည့်ရန်လိုအပ်ပါသည်...',
+    //         'email.required' => 'Email ဖြည့်ရန်လိုအပ်ပါသည်...',
+    //         'password' => 'Password ဖြည့်ရန်လိုအပ်ပါသည်...',
+    //         'role' => 'Role Number ဖြည့်ရန်လိုအပ်ပါသည်...'
+    //     ] ;
+    // }
 }

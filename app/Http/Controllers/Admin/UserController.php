@@ -6,9 +6,24 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Http\Requests\UserRequest;
+use App\Http\Requests\UserUpdateRequest;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
+
 
 class UserController extends Controller
 {
+    public function __construct(){
+        $this->middleware(function($request,$next){
+            $this->user = Auth::user();
+           if($this->user->role == 'Super Admin') {
+            return $next($request);
+           }
+           else{
+                return back();
+           }
+        });
+    }
     /**
      * Display a listing of the resource.
      */
@@ -33,8 +48,9 @@ class UserController extends Controller
     {
         // dd($request);
         $users =User::create($request->all());
+        $users->password = Hash::make($request->password);
         $users->save();
-        return redirect()->route('users.index');
+        return redirect()->route('backend.users.index');
     }
 
     /**
@@ -50,15 +66,21 @@ class UserController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $user = User::find($id);
+        return view ('admin.user.edit',compact('user'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UserUpdateRequest $request, string $id)
     {
-        //
+        // dd($request);
+        $user = User::find($id);
+        $user->update($request->all());
+
+        $user->save();
+        return redirect()->route('backend.users.index');
     }
 
     /**
@@ -66,6 +88,11 @@ class UserController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        // dd($id);
+        $user = User::find($id);
+        $user->delete();
+    
+
+        return redirect()->route('backend.users.index');
     }
 }

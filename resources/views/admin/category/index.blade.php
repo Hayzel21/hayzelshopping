@@ -43,7 +43,7 @@
 
 
                                                        
-                                                        <button class="btn btn-sm btn-danger delete"> <i class="fa-solid fa-trash"></i></button>
+                                                        <button class="btn btn-sm btn-danger delete" data-id="{{$category->id}}"> <i class="fa-solid fa-trash"></i></button>
 
                                                     </td>
                                                 </tr>
@@ -63,16 +63,26 @@
 <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-        <div class="modal-header">
-            <h1 class="modal-title fs-5" id="deleteModalLabel">Category Delete Comfirmation</h1>
+        <div class="modal-header bg-danger">
+            <h1 class="modal-title fs-5 text-light" id="deleteModalLabel">Category Delete Comfirmation</h1>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-            ...
+            <h3 class="text-danger">Are You Sure Delete?</h3>
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
-            <button type="button" class="btn btn-primary">Yes</button>
+
+            
+
+                <form action="" method="post" id="deleteForm">
+                {{csrf_field()}}
+                {{method_field('delete')}}
+                <button type="submit" class="btn btn-primary btn-danger">Yes</button>
+                </form>
+           
+
+           
         </div>
         </div>
     </div>
@@ -85,11 +95,15 @@
    <script>
 
         $(document).ready(function(){
-
-            $(#deleteTbody).on('click','.delete',function(){
-
+            // alert("Hello");
+            $('#deleteTbody').on('click','.delete',function(){
+                let id = $(this).data('id');
                 // console.log(id);
+                $('#deleteForm').prop('action','categories/' +id);
+                $('#deleteModal').modal('show');
             })
+            
+        
 
         })
    </script>

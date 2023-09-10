@@ -27,15 +27,36 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+Route::post('orders',[App\Http\Controllers\ItemController::class,'orderNow'])->name('orderNow');
+
+
+
+
+
 // admin
 
-Route::group(['prefix'=>'backend','as' => 'backend.'],function(){
+Route::group(['middleware' => ['auth'],'prefix'=>'backend','as' => 'backend.'],function(){
 
     Route::get('/',[App\Http\Controllers\Admin\DashboardController::class,'index'])->name('dashboard');
     Route::resource('items',App\Http\Controllers\Admin\ItemController::class);
     Route::resource('categories',App\Http\Controllers\Admin\CategoryController::class);
     Route::resource('payments',App\Http\Controllers\Admin\PaymentController::class);
     Route::resource('users',App\Http\Controllers\Admin\UserController::class);
+    Route::resource('password',App\Http\Controllers\Admin\PasswordController::class);
+
+    Route::get('orders',[App\Http\Controllers\Admin\OrderController::class,'index'])->name('orders.index');
+
+    Route::get('orders/{vocherNo}',[App\Http\Controllers\Admin\OrderController::class,'detail'])->name('orders.detail');
+
+    Route::put('orders/{vocherNo}',[App\Http\Controllers\Admin\OrderController::class,'status'])->name('orders.status');
+
+ 
+
+
+
+   
+    
+  
 
 });
 
